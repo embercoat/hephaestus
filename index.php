@@ -22,7 +22,7 @@ switch($parts[0]){
     case 'login':{
 		$parts = resolv($_GET);
 		$parts['method'] = (($parts['method']=='index')?'login':$parts['method']);
-		$login_class = new class_login();
+		$login_class = new controller_login();
     	call_user_func_array(array($login_class, $parts['method']), $parts['params']);
         echo model::factory('renderer')->render('template/login.html');
     break;
@@ -33,7 +33,8 @@ switch($parts[0]){
 		if(method_exists($class, 'before')){
 	        $class->before();
 	    }
-    call_user_func_array(array($class,$parts['method']), $parts['params']);
+		
+	    call_user_func_array(array($class,$parts['method']), $parts['params']);
         echo model::factory('renderer')->render('template/main.html');
     }
 }

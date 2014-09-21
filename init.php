@@ -1,7 +1,7 @@
 <?php
 if(!defined('key')) header('location: /');
 
-define('BASEPATH', '/var/subdoms/anax/');
+define('BASEPATH', '/var/subdoms/hephaestus/');
 define('UPLOAD', BASEPATH.'upload/');
 if(!is_dir(UPLOAD)) mkdir(UPLOAD);
 
@@ -20,14 +20,14 @@ function __autoload($class){
 function resolv($url){
 	$parts = model::factory('url')->get_parts();
 	if($parts[0] == 'admin'){
-		$parts = explode('/', $_GET['cmd'], 4);
+		$parts = model::factory('url')->get_parts();
 		if(!isset($parts[1]) || $parts[1] == '')
 			$parts[1] = 'welcome';
 		if(isset($parts[3]))
 			$params = explode('/', $parts[3]);
 		else
 			$params = array();
-		$class_name = 'class_'.$parts[0].'_'.$parts[1];
+		$class_name = 'controller_'.$parts[0].'_'.$parts[1];
 		$class = new $class_name;
 		$method = (isset($parts[2]) && !empty($parts[2])) ? $parts[2] : 'index';
 	} else {
@@ -38,7 +38,7 @@ function resolv($url){
 			$params = explode('/', $parts[2]);
 		else
 			$params = array();
-		$class_name = 'class_'.$parts[0];
+		$class_name = 'controller_'.$parts[0];
 		$class = new $class_name;
 		$method = (isset($parts[1]) && !empty($parts[1])) ? $parts[1] : 'index';
 	}

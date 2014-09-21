@@ -31,15 +31,11 @@ class model_renderer {
         $this->js = array_unique($this->js);
     }
     function render($basefile, $by_include = false){
-        if(!$by_include){
-            $page = file_get_contents(BASEPATH.$basefile);
-        } else {
-            extract($this->content);
-            ob_start();
-            include(BASEPATH.$basefile);
-            $page = ob_get_contents();
-            ob_end_clean();
-        }
+		extract($this->content);
+		ob_start();
+		include(BASEPATH.$basefile);
+		$page = ob_get_contents();
+		ob_end_clean();
 
         $tmp = '';
         do {

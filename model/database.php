@@ -7,7 +7,9 @@ class model_database {
     function model_database(){
         $this->connection = mysqli_connect('localhost', 'draco', '#Warcraft1', 'd0019e_blogg');
     }
-
+    static function escape_string($string){
+        return self::instance()->connection->real_escape_string($string);
+    }
     static function instance(){
         if(is_null(self::$instance))
             self::$instance = new model_database();

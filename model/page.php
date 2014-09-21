@@ -15,7 +15,7 @@ class model_page {
 
     }
     function edit_page($title, $body, $idpage, $show_in_menu){
-        $sql = 'update page set title="'.$title.'", content="'.$body.'", timestamp="'.time().'", show_in_menu="'.$show_in_menu.'" where idpage="'.$idpage.'"';
+        $sql = 'update page set title="'.$title.'", content="'.model::factory('database')->escape_string($body).'", timestamp="'.time().'", show_in_menu="'.$show_in_menu.'" where idpage="'.$idpage.'"';
         model::factory('database')->query($sql);
     }
 
