@@ -5,58 +5,80 @@
 	padding: 0;
 }
 a {
-	text-decoration: none;
+        text-decoration: none;
 }
 html, body {
-	height: 100%;
-	width: 100%;
-	border: none;
+    height: 100%;
+    width: 100%;
+    border: none;
 }
 a {
-	color: #666666;
+    color: #666666;
+}
+p {
+    padding-bottom: 10px;
+}
+blockquote {
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+blockquote p {
+  display: inline;
 }
 h1, h2, h3, h4 {
-	color: black;
+    color: black;
+    padding-bottom: 10px;
 }
 #container {
-	width: 750px;
-	margin: 0px auto;
+    width: 750px;
+    margin: 0px auto;
 }
 #menu {
-	width: 175px;
-	vertical-align: top;
+    width: 175px;
+    vertical-align: top;
 }
 #menu li {
-	list-style: none;
+    list-style: none;
 }
 #main_head {
-	height: 70px;
-	font-family: arial;
+    height: 70px;
+    font-family: arial;
 }
 #main {
-	width: 100%;
+    width: 100%;
 }
 #content {
-	
+    
 }
 #footer {
-	height: 40px;
-	vertical-align: bottom;
-	text-align: right;
-	font-size: 10pt;
+    height: 40px;
+    vertical-align: bottom;
+    text-align: right;
+    font-size: 10pt;
 }
 .success, .info, .error, .warning {
-	list-style:none outside none;
-	background-color:lightGreen;
-	margin:9px;
-	padding:5px;
+    list-style:none outside none;
+    background-color:lightGreen;
+    margin:9px;
+    padding:5px;
 }
 .info {
-	background-color:lightblue;
+    background-color:lightblue;
 }
 .error {
-	background-color:lightCoral;
+    background-color:lightCoral;
 }
 .warning {
-	background-color: orange;
+    background-color: orange;
 }

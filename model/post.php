@@ -2,12 +2,12 @@
 class model_post {
     function get_all($only_in_menu = false){
         $sql = 'select * from post order by timestamp desc';
-        $res = model::factory('database')->query($sql);
-        $return = array();
+        return model::factory('database')->query($sql);
+        /*$return = array();
         while($row = $res->fetch_assoc())
             $return[] = $row;
 
-        return $return;
+        return $return;*/
     }
     function add_post($title, $body, $user){
         $sql = 'insert into post (title, content, author, timestamp) values ("'.$title.'", "'.$body.'", "'.$user.'", "'.time().'")';

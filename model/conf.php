@@ -23,8 +23,8 @@ class model_conf{
     }
     static function get($thing){
         $get = model::factory('database')->query('select * from conf where `key` = "'.$thing.'"');
-        if($get = $get->fetch_assoc()){
-            return $get;
+        if(!empty($get)){
+            return array_pop($get);
         } else {
             return false;
         }

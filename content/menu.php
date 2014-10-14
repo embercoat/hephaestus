@@ -1,10 +1,5 @@
-<?php
-
-$pages = model::factory('page')->get_all(true);
-$str = '<ul>';
-foreach($pages as $p){
-    $str .= '<li><a href="[[[page:'.$p['idpage'].']]]">'.$p['title'].'</a></li>';
-}
-$str .= '</ul>';
-echo $str;
+<ul>
+<li><a href="[[[page:3]]]">[[[title:3]]]</a></li>
+<li><a href="/kmom2/">Tärningsspel</a></li>
+</ul>
 

@@ -6,9 +6,10 @@ class controller_page extends controller_common {
     function page($page){
         list($id, $null) = explode(':', $page);
         $sql = 'select * from page where idpage="'.$id.'"';
-        $page = model::factory('database')->query($sql)->fetch_assoc();
-        $page_renderer = model::factory('renderer', 'page');
+        list($page) = model::factory('database')->query($sql);
+        $page_renderer = model::factory('renderer', 'pages');
         $page_renderer->page = $page;
-        model::factory('renderer')->content = $page_renderer->render('template/page.php', true);
+
+        model::factory('renderer')->content = $page_renderer->render('template/page.php');
     }
 }

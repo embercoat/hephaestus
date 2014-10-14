@@ -31,11 +31,11 @@ class model_renderer {
         $this->js = array_unique($this->js);
     }
     function render($basefile, $by_include = false){
-		extract($this->content);
-		ob_start();
-		include(BASEPATH.$basefile);
-		$page = ob_get_contents();
-		ob_end_clean();
+	extract($this->content);
+	ob_start();
+	include(BASEPATH.$basefile);
+	$page = ob_get_contents();
+	ob_end_clean();
 
         $tmp = '';
         do {
@@ -96,7 +96,7 @@ class model_renderer {
         } else {
             $sql = "select path, filename, type from file where filename = '".$id."'";
         }
-        $data = model::factory('database')->query($sql)->fetch_assoc();
+        list($data) = model::factory('database')->query($sql);
         if(!empty($data))
             return '/file/get/'.$id;
         else
@@ -105,7 +105,7 @@ class model_renderer {
     }
     function post($id){
         $sql = "select title from post where idpost = '".$id."'";
-        $data = model::factory('database')->query($sql)->fetch_assoc();
+        list($data) = model::factory('database')->query($sql);
         if(!empty($data))
             return '/post/'.$id.':'.$this->url_safe($data['title']);
         else
@@ -114,13 +114,25 @@ class model_renderer {
     }
     function page($id){
         $sql = "select title from page where idpage = '".$id."'";
-        $data = model::factory('database')->query($sql)->fetch_assoc();
+        list($data) = model::factory('database')->query($sql);
         if(!empty($data))
             return '/page/'.$id.':'.$this->url_safe($data['title']);
         else
             return 'no page with that id';
 
     }
+    function title($id){
+	$sql = "select title from page where idpage = '".$id."'";
+        list($data) = model::factory('database')->query($sql);
+        if(!empty($data))
+            return $data['title'];
+        else
+            return 'no page with that id';
+    }
+    function csource($path){
+		//The @ is to suppress the strict standards-warning and not have to store explode's result before popping it
+		return '<a href="/csource/?path='.$path.'">'.@array_pop(explode('/', $path)).'</a>';
+	}
     function render_content($content){
     	if($this->__get($content[1]))
     		return $this->__get($content[1]);

@@ -1,1 +1,1 @@
-<h1><a href="/"><?php echo model::factory('conf')->get_value('site_name'); ?> </a></h1>
+<h1><a href="/"><?php echo model::factory('conf')->get_value('site_name'); ?></a></h1>

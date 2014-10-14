@@ -1,11 +1,12 @@
 <?php
 if(!defined('key')) header('location: /');
 
-define('BASEPATH', '/var/subdoms/hephaestus/');
-define('UPLOAD', BASEPATH.'upload/');
-if(!is_dir(UPLOAD)) mkdir(UPLOAD);
-
+include('conf.php');
 global $conf;
+
+define('BASEPATH', $conf['basepath']);
+define('UPLOAD', BASEPATH.$conf['upload']);
+if(!is_dir(UPLOAD)) mkdir(UPLOAD);
 
 
 function __autoload($class){
