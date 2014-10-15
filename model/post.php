@@ -23,8 +23,8 @@ class model_post {
     function get_data($id){
         $res = model::factory('database')->query('select * from post where idpost ="'.$id.'"');
         $return = array();
-        while($row = $res->fetch_assoc())
-            return $row;
+        if(count($res))
+            return $res[0];
 
         return false;
     }
