@@ -1,4 +1,4 @@
-<form action="/admin/post/<?php echo ((isset($data['idpost'])) ? 'edit/'.$data['idpost'] : 'new_post'); ?>" method="post">
+<form action=":::url:/admin/post/<?php echo ((isset($data['idpost'])) ? 'edit/'.$data['idpost'] : 'new_post'); ?>:::" method="post">
     <fieldset>
         <input type="hidden" name="idpost" id="idpost" value="<?php echo ((isset($data['idpost'])) ? $data['idpost'] : 'new'); ?>" />
         <label for="title">Titel</label>

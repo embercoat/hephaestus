@@ -24,12 +24,12 @@
 </table>
 <br>
 <p>
-<a href="/kmom2/roll">Slå Tärning</a><br>
-<a href="/kmom2/next">Nästa omgång</a><br>
-<a href="/kmom2/clear">Rensa data och börja om</a><br>
+<a href=":::url:/kmom2/roll:::">Slå Tärning</a><br>
+<a href=":::url:/kmom2/next:::">Nästa omgång</a><br>
+<a href=":::url:/kmom2/clear:::">Rensa data och börja om</a><br>
 </p>
 <br>
 <p>
     Skriptet använder en bunt klasser som är inblandade i varierande grad.
-    <a href="/csource/?path=model/kmom2/dicegame.php">Dicegame</a> bygger på <a href="/csource/?path=model/kmom2/gamedata.php">gamedata</a> som sköter hur och var data lagras genom sessionen. Till dessa hör en <a href="/csource/?path=model/kmom2/randomize.php">randomizer</a> som sköter själva slumpandet av tärningsslaget. 
+    <a href=":::url:/csource/?path=model/kmom2/dicegame.php:::">Dicegame</a> bygger på <a href=":::url:/csource/?path=model/kmom2/gamedata.php:::">gamedata</a> som sköter hur och var data lagras genom sessionen. Till dessa hör en <a href=":::url:/csource/?path=model/kmom2/randomize.php:::">randomizer</a> som sköter själva slumpandet av tärningsslaget. 
 </p>

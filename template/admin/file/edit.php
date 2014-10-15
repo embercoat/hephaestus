@@ -1,4 +1,4 @@
-<form action="/admin/file/new_file" method="post" enctype="multipart/form-data">
+<form action=":::url:/admin/file/new_file:::" method="post" enctype="multipart/form-data">
     <fieldset>
         <input type="hidden" name="idpost" id="idpost" value="new" />
         <label for="title">Titel</label>

@@ -13,7 +13,7 @@
             <td><?php echo $f['idfile']; ?></td>
             <td><?php echo $f['name']; ?></td>
             <td><?php echo model::factory('user')->get_username_by_id($f['author']); ?></td>
-            <td><a href="/admin/file/delete/<?php echo $f['idfile']; ?>">Radera</a></td>
+            <td><a href=":::url:/admin/file/delete/<?php echo $f['idfile']; ?>:::">Radera</a></td>
         </tr>
     <?php } ?>
     </tbody>

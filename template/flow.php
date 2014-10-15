@@ -2,7 +2,7 @@
 foreach($posts as $p){
 ?>
 <div class="post">
-<h1><a href="/post/<?php echo model::factory('renderer')->url_safe($p['idpost'].':'.strtolower($p['title'])); ?>"><?php echo $p['title']; ?></a></h1>
+<h1><a href=":::url:/post/<?php echo model::factory('renderer')->url_safe($p['idpost'].':'.strtolower($p['title'])); ?>:::"><?php echo $p['title']; ?></a></h1>
 <div class="post_body">
 <?php echo substr($p['content'], 0, 500).((strlen($p['content']) >= 500) ? '....' : ''); ?>
 </div>

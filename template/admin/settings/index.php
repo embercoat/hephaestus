@@ -1,4 +1,4 @@
-<form action="/admin/settings/" method="post">
+<form action=":::url:/admin/settings/:::" method="post">
 <button type="submit">Spara</button>
 <table>
 <thead>

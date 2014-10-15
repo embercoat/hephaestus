@@ -1,4 +1,4 @@
-<form action="/admin/user/new_user" method="post">
+<form action=":::url:/admin/user/new_user:::" method="post">
 <fieldset>
     <label for="username">Användarnamn</label>
     <input type="text" id="username" name="username" />

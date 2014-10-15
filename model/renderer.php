@@ -51,7 +51,7 @@ class model_renderer {
     function render_css(){
         $imports = array();
         foreach($this->css as $c){
-            $imports[] = '@import url('.$c.');';
+            $imports[] = '@import url(:::url:'.$c.':::);';
         }
         return implode("\r\n", $imports);
     }
@@ -93,7 +93,11 @@ class model_renderer {
     function url($url){
 	if($url[0] == '/')
 	    $url = substr($url, 1);
-	return BASEURL.$url;
+	if(strstr($url, BASEURL) == 0){
+	    return BASEURL.$url;
+	} else {
+	    return $url;
+	}
     }
     function file($id){
         if(is_numeric($id)){
@@ -103,7 +107,7 @@ class model_renderer {
         }
         list($data) = model::factory('database')->query($sql);
         if(!empty($data))
-            return '/file/get/'.$id;
+            return $this->url('/file/get/'.$id);
         else
             return 'no image with that id';
 
