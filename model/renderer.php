@@ -112,7 +112,7 @@ class model_renderer {
         $sql = "select title from post where idpost = '".$id."'";
         list($data) = model::factory('database')->query($sql);
         if(!empty($data))
-            return '/post/'.$id.':'.$this->url_safe($data['title']);
+            return $this->url('/post/'.$id.':'.$this->url_safe($data['title']));
         else
             return 'no post with that id';
 
@@ -121,7 +121,7 @@ class model_renderer {
         $sql = "select title from page where idpage = '".$id."'";
         list($data) = model::factory('database')->query($sql);
         if(!empty($data))
-            return '/page/'.$id.':'.$this->url_safe($data['title']);
+            return $this->url('/page/'.$id.':'.$this->url_safe($data['title']));
         else
             return 'no page with that id';
 
