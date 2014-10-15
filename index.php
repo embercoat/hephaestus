@@ -1,6 +1,7 @@
 <?php
 define('key', '');
 require('init.php');
+ini_set("session.cookie_lifetime",$conf['session_timeout']);
 session_start();
 
 $renderer = new model_renderer();
