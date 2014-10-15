@@ -13,7 +13,7 @@
             <td><?php echo $p['idpage']; ?></td>
             <td><?php echo $p['title']; ?></td>
             <td><?php echo model::factory('user')->get_username_by_id($p['author']); ?></td>
-            <td><a href=":::url:/admin/page/edit/<?php echo $p['idpage']; ?>:::">Ändra</a> <a href="/admin/page/delete/<?php echo $p['idpage']; ?>">Radera</a></td>
+            <td><a href=":::url:/admin/page/edit/<?php echo $p['idpage']; ?>:::">Ändra</a> <a href=":::url:/admin/page/delete/<?php echo $p['idpage']; ?>:::">Radera</a></td>
         </tr>
     <?php } ?>
     </tbody>
