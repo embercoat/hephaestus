@@ -6,7 +6,7 @@ class controller_admin_user extends controller_admin_common {
         parent::before();
     }
     function index(){
-        $r = model::factory('database')->query('select * from user order by fname ASC, lname ASC');
+        $r = model::factory('database')->safe_query('select * from user order by fname ASC, lname ASC');
         $this->renderer->users = $r;
         model::factory('renderer')->admin_content = $this->renderer->render('template/admin/user/list.php', true);
 

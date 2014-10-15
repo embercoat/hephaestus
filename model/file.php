@@ -1,9 +1,9 @@
 <?php
 class model_file {
     function get_all(){
-        $res = model::factory('database')->query('select * from file order by filename desc');
+        $res = model::factory('database')->safe_query('select * from file order by filename desc');
         $return = array();
-        while($row = $res->fetch_assoc())
+        foreach($res as $row)
             $return[] = $row;
 
         return $return;

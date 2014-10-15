@@ -2,11 +2,11 @@
 class controller_file extends controller_common{
 	function get($file){
 	    if(is_numeric($file)){
-	        $sql = "select path, filename, type from file where idfile = '".$file."'";
+        	$sql = "select path, filename, type from file where idfile = '".$file."'";
 	    } else {
-	        $sql = "select path, filename, type from file where filename = '".$file."'";
+        	$sql = "select path, filename, type from file where filename = '".$file."'";
 	    }
-	    $data = model::factory('database')->query($sql)->fetch_assoc();
+	    list($data) = model::factory('database')->query($sql);
 	    header('Content-Description: File Transfer');
         header('Content-Type: '.$data['type']);
         $mime = explode('/', $data['type']);
@@ -19,7 +19,5 @@ class controller_file extends controller_common{
         flush();
         readfile(UPLOAD.$data['path']);
         die();
-
-
 	}
 }

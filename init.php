@@ -6,6 +6,7 @@ global $conf;
 
 define('BASEPATH', $conf['basepath']);
 define('UPLOAD', BASEPATH.$conf['upload']);
+define('BASEURL', $conf['baseurl']);
 if(!is_dir(UPLOAD)) mkdir(UPLOAD);
 
 

@@ -15,6 +15,8 @@ RewriteCond %{REQUEST_FILENAME} !-f
 # Rewrite all other URLs to index.php/URL
 RewriteRule .* index.php?cmd=$0 [PT,L,QSA]
 
+RewriteLog "rewrite.log"
+
 php_flag  log_errors on
 php_flag display_errors on
 php_value error_log  /var/subdoms/blogg/php_error.log

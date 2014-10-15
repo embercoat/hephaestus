@@ -7,7 +7,7 @@
     </thead>
     <tbody>
     <?php
-    while($row = $users->fetch_assoc()){ ?>
+    foreach($users as $row){ ?>
         <tr>
             <td><?php echo $row['user_id']; ?></td>
             <td><?php echo $row['fname'].' '.$row['lname']; ?></td>

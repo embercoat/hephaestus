@@ -90,6 +90,11 @@ class model_renderer {
 
         }
     }
+    function url($url){
+	if($url[0] == '/')
+	    $url = substr($url, 1);
+	return BASEURL.$url;
+    }
     function file($id){
         if(is_numeric($id)){
             $sql = "select path, filename, type from file where idfile = '".$id."'";
