@@ -14,7 +14,7 @@ class controller_admin_post extends controller_admin_common {
     function new_post(){
         if(isset($_POST) && !empty($_POST)){
             $id = model::factory('post')->add_post($_POST['title'], $_POST['body'], model_user::instance()->getId());
-            header('location: /admin/post/edit/'.$id);
+            header('location:  '.model::factory('renderer')->url('/admin/post/edit/'.$id));
         }
         $renderer = model::factory('renderer', 'post');
         model::factory('renderer')->add_css('/css/form.css');
