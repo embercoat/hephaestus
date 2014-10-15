@@ -6,4 +6,8 @@ $conf['database']['driver_options'] = array();
 
 $conf['basepath'] = '/var/subdoms/hephaestus/';
 $conf['upload'] = 'upload/';
+
+$conf['baseurl'] = '/';
+
 $conf['session_timeout'] = "86400";
+
