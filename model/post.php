@@ -10,9 +10,9 @@ class model_post {
         return $return;*/
     }
     function add_post($title, $body, $user){
-        $sql = 'insert into post (title, content, author, timestamp) values ("'.$title.'", "'.$body.'", "'.$user.'", "'.time().'")';
-        model::factory('database')->query($sql);
-        return model::factory('database')->get_connection()->insert_id;
+        $sql = 'insert into post (title, content, author, timestamp) values (:title, :body, :user, :time)';
+        $params = array('title' => $title, 'body' => $body, 'user' => $user, 'time' => time());
+        return model::factory('database')->insert($sql, $params);
 
     }
     function edit_post($title, $body, $idpost){

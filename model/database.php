@@ -22,6 +22,15 @@ class model_database {
         $statement->execute();
         return $statement->fetchAll();
     }
+    function insert($sql, $parameters=array()){
+        if(!is_array($parameters))
+            $parameters = array($parameters);
+        
+        $statement = $this->database->prepare($sql);
+        $statement->execute($parameters);
+        return $this->database->lastInsertId();
+
+    }
     function safe_query($sql, $parameters=array()){
         if(!is_array($parameters))
             $parameters = array($parameters);
