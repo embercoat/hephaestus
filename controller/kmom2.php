@@ -27,14 +27,14 @@ class controller_kmom2 {
     }
     function roll(){
         $this->gamedata->roll();
-        header('Location: /kmom2/');
+        header('Location: '.model::factory('renderer')->url('/kmom2/'));
     }
     function next(){
         $this->gamedata->next();
-        header('Location: /kmom2/');
+        header('Location: '.model::factory('renderer')->url('/kmom2/'));
     }
     function clear(){
         $this->gamedata->clear();
-        header('Location: /kmom2/');
+        header('Location: '.model::factory('renderer')->url('/kmom2/'));
     }
 }

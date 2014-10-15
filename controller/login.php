@@ -13,7 +13,7 @@ class controller_login {
             $user->login_by_username_and_password($_POST['username'], $_POST['password']);
             
 			if($user->logged_in()){
-			    header('location: /admin');
+			    header('location: '.model::factory('renderer')->url('/admin'));
 			}
 			else{
 			    header('location: '.$_SERVER['HTTP_REFERER']);
@@ -23,6 +23,6 @@ class controller_login {
 	}
 	function logout(){
 	    unset($_SESSION['user']);
-	    header('Location: /');
+	    header('Location: '.model::factory('renderer')->url('/'));
 	}
 }

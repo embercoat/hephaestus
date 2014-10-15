@@ -20,7 +20,7 @@ class controller_admin_file extends controller_admin_common {
                                              file_get_contents($_FILES['file']['tmp_name']),
                                              model_user::instance()->getId()
                                         );
-            header('location: /admin/file/');
+            header('location: '.model::factory('renderer')->url('/admin/file/'));
         }
         $renderer = model::factory('renderer', 'post');
         model::factory('renderer')->add_css('/css/form.css');
@@ -28,6 +28,6 @@ class controller_admin_file extends controller_admin_common {
     }
     function delete($id){
         model::factory('file')->delete($id);
-        header('location: /admin/file');
+        header('location: '.model::factory('renderer')->url('/admin/file/'));
     }
 }

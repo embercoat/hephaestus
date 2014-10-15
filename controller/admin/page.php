@@ -15,7 +15,7 @@ class controller_admin_page extends controller_admin_common {
         if(isset($_POST) && !empty($_POST)){
 
             $id = model::factory('page')->add_page($_POST['title'], $_POST['body'], model_user::instance()->getId(), $sim);
-            header('location: /admin/page/edit/'.$id);
+            header('location: '.model::factory('renderer')->url('/admin/page/edit/'.$id));
         }
         $renderer = model::factory('renderer', 'page');
         model::factory('renderer')->add_css('/css/form.css');
@@ -37,6 +37,6 @@ class controller_admin_page extends controller_admin_common {
     }
     function delete($id){
         model::factory('page')->delete($id);
-        header('location: /admin/page');
+        header('location: '.model::factory('renderer')->url('/admin/page'));
     }
 }

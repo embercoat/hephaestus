@@ -36,6 +36,6 @@ class controller_admin_post extends controller_admin_common {
     }
     function delete($id){
         model::factory('post')->delete($id);
-        header('location: /admin/post');
+        header('location: '.model::factory('renderer')->url('/admin/post'));
     }
 }

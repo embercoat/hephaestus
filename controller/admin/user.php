@@ -25,7 +25,7 @@ class controller_admin_user extends controller_admin_common {
     }
     function delete($id){
         model:factory('user')->delete($id);
-        header('location: /admin/user/');
+        header('location: '.model::factory('renderer')->url('/admin/user/'));
 
     }
 }
