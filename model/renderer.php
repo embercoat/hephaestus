@@ -145,7 +145,7 @@ class model_renderer {
     function render_content($content){
     	if($this->__get($content[1]))
     		return $this->__get($content[1]);
-        $path = str_replace('_', '/', BASEPATH.'content/'.$content[1].'.php');
+        $path = str_replace('_', '/', BASEPATH.'template/'.$content[1].'.php');
         if(is_file($path)){
 			ob_start();
             include($path);
