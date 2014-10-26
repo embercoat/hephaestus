@@ -3,10 +3,9 @@
 class model_url {
     function get_parts(){
         if(isset($_GET['cmd']))
-            $parts = explode('/', $_GET['cmd']);
+            return explode('/', $_GET['cmd']);
         else
-            $parts = array('');
-        return $parts;
+            return array('');
     }
     
 } // End Welcome

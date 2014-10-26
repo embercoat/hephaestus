@@ -1,4 +1,8 @@
 <?php
+/*
+ * @author Kristian Nordman <kristian.nordman@scripter.se>
+ * 
+ */
 class controller_admin_user extends controller_admin_common {
     function before(){
         $this->renderer = model::factory('renderer', 'user');

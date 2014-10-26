@@ -1,5 +1,8 @@
 <?php
-
+/*
+ * @author Kristian Nordman <kristian.nordman@scripter.se>
+ * 
+ */
 class controller_admin_settings extends controller_admin_common {
     function before(){
         model::factory('renderer')->admin_title = 'Inställningar - '. model::factory('conf')->get_value('site_name');

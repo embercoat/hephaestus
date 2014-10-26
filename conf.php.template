@@ -1,13 +1,21 @@
 <?php
+/*
+ * Configurationfile for the site
+ * "One file to rule it all"
+ */
 $conf['database']['dsn']            = 'mysql:host=localhost;dbname=d0019e_blogg;';
-$conf['database']['username']       = 'root';
-$conf['database']['password']       = 'Str0ng&freE';
+$conf['database']['username']       = 'username';
+$conf['database']['password']       = 'Password';
 $conf['database']['driver_options'] = array();
 
-$conf['basepath'] = '/var/subdoms/hephaestus/';
+// Some paths required by the system to work properly.
+$conf['basepath'] = '/path/to/base/';
+// Upload must be writable by webserver
 $conf['upload'] = 'upload/';
 
+// Baseurl used when rewriting urls in the system.
 $conf['baseurl'] = '/';
 
+// Session Timeout. 86400s = 24h
 $conf['session_timeout'] = "86400";
 

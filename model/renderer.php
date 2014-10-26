@@ -1,27 +1,46 @@
 <?php
-
+/**
+ * The magic renderer
+ *
+ * This is where most of the magic happens
+ */
 class model_renderer {
+	/**
+	 * A few class variables to start things off.
+	 */
     private static $instance;
     private $content = array();
     private $css = array();
     private $js = array();
     public $render_links = true;
 
+	/**
+	 * Overloading the regular __set allows for $classinstance->item = 'value'; even if item does not already exist
+	 */
     function __set($name, $value){
         $this->content[$name] = $value;
     }
+	/**
+	 * Similar to __set above
+	 */
     function __get($name){
         if(isset($this->content[$name]))
             return $this->content[$name];
         else
             return false;
     }
+	/**
+	 * Get and set are just aliases for __get and __set
+	 */
     function get($name){
     	return $this->__get($name);
     }
     function set($name, $value){
     	$this->__set($name, $value);
     }
+	/**
+	 * add extra linked resources to the finished page.
+	 */
     function add_css($uri){
         $this->css[] = $uri;
         $this->css = array_unique($this->css);
@@ -30,12 +49,19 @@ class model_renderer {
         $this->js[] = $uri;
         $this->js = array_unique($this->js);
     }
+	/**
+	 * The magic renderer
+	 *
+	 * Right here is where all of the final rendering happens.
+	 * @param string $basefile the basefile to base the rendering on
+	 * @param bool $by_include
+	 */
     function render($basefile, $by_include = false){
-	extract($this->content);
-	ob_start();
-	include(BASEPATH.$basefile);
-	$page = ob_get_contents();
-	ob_end_clean();
+		extract($this->content);
+		ob_start();
+		include(BASEPATH.$basefile);
+		$page = ob_get_contents();
+		ob_end_clean();
 
         $tmp = '';
         do {
