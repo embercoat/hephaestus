@@ -9,4 +9,4 @@ if(!defined('key'))
 require_once('init.php');
 
 register_shutdown_function(array(model::factory('debug'), 'shutdown'));
-?> 
+?>
