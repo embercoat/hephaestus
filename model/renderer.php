@@ -13,6 +13,8 @@ class model_renderer {
     private $css = array();
     private $js = array();
     public $render_links = true;
+	private $textareas = array();
+	private $debug = true;
 
 	/**
 	 * Overloading the regular __set allows for $classinstance->item = 'value'; even if item does not already exist
@@ -54,7 +56,7 @@ class model_renderer {
 	 *
 	 * Right here is where all of the final rendering happens.
 	 * @param string $basefile the basefile to base the rendering on
-	 * @param bool $by_include
+	 * @param bool $by_include backwards compatibility. Now deprecated
 	 */
     function render($basefile, $by_include = false){
 		extract($this->content);
@@ -63,18 +65,38 @@ class model_renderer {
 		$page = ob_get_contents();
 		ob_end_clean();
 
+		$matches = array();
+		
         $tmp = '';
         do {
             $tmp = $page;
+			model::factory('log')->information('Renderingloop');
+			
+			//Exclude textarea from replacements
+			$page = preg_replace_callback('/<textarea.*?>[\s\S]*?<\/textarea>/mi', array($this, 'save_textarea'), $page);
+
             if($this->render_links)
                 $page = preg_replace_callback('/\[\[\[(.*?)\]\]\]/', array($this, 'render_link'), $page);
+
             $page = preg_replace_callback('/:::(.*?):::/', array($this, 'render_functions'), $page);
             $page = preg_replace_callback('/###(.*?)###/', array($this, 'render_content'), $page);
+			$page = preg_replace_callback('/<textarea:([\s\S]{32})\/>/mi', array($this, 'restore_textarea'), $page);
         } while ($page != $tmp);
-
+		
         return $page;
     }
+	function save_textarea($content){
+		$md5 = md5($content[0]);
+		model::factory('log')->information("Saving textarea to: ".$md5);
+		$this->textareas[$md5] = $content[0];
+		return '<textarea:'.$md5.'/>';
+	}
+	function restore_textarea($content){
+		model::factory('log')->information("Restoring textarea: ".$content[1]);
+		return $this->textareas[$content[1]];
+	}
     function render_css(){
+		model::factory('log')->information("Rendering CSS");
         $imports = array();
         foreach($this->css as $c){
             $imports[] = '@import url(:::url:'.$c.':::);';
@@ -83,6 +105,7 @@ class model_renderer {
     }
 
     function render_functions($content){
+		model::factory('log')->information("Rendering function: ".$content[1]);
         if(strstr($content[1], ':')){
             list($func, $param) = explode(':', $content[1], 2);
             if(method_exists($this, $func)){
@@ -101,6 +124,8 @@ class model_renderer {
 
     }
     function render_link($content){
+		model::factory('log')->information("Rendering Link: ".$content[1]);
+
         if(strstr($content[1], ':')){
             list($func, $param) = explode(':', $content[1], 2);
             if(method_exists($this, $func)){
@@ -117,15 +142,19 @@ class model_renderer {
         }
     }
     function url($url){
-	if($url[0] == '/')
-	    $url = substr($url, 1);
-	if(strstr($url, BASEURL) == 0){
-	    return BASEURL.$url;
-	} else {
-	    return $url;
-	}
+		model::factory('log')->information("Replacing url: ".$url);
+
+		if($url[0] == '/')
+			$url = substr($url, 1);
+		if(strstr($url, BASEURL) == 0){
+			return BASEURL.$url;
+		} else {
+			return $url;
+		}
     }
     function file($id){
+		model::factory('log')->information("Replacing file: ".$id);
+
         if(is_numeric($id)){
             $sql = "select path, filename, type from file where idfile = '".$id."'";
         } else {
@@ -139,6 +168,8 @@ class model_renderer {
 
     }
     function post($id){
+		model::factory('log')->information("Replacing post: ".$id);
+
         $sql = "select title from post where idpost = '".$id."'";
         list($data) = model::factory('database')->query($sql);
         if(!empty($data))
@@ -171,6 +202,7 @@ class model_renderer {
     function render_content($content){
     	if($this->__get($content[1]))
     		return $this->__get($content[1]);
+		
         $path = str_replace('_', '/', BASEPATH.'template/'.$content[1].'.php');
         if(is_file($path)){
 			ob_start();

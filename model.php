@@ -22,6 +22,8 @@ class model{
             // No? Well make on up then!
             $model_name = 'model_'.$model;
             self::$instances[$model][$instance] = new $model_name;
+            if(method_exists(self::$instances[$model][$instance], 'init'))
+                self::$instances[$model][$instance]->init();
         }
         // Return it
         return self::$instances[$model][$instance];

@@ -19,6 +19,7 @@ class model_database {
     }
     function query($sql){
         $statement = $this->database->prepare($sql);
+        $statement->setFetchMode(PDO::FETCH_ASSOC);
         $statement->execute();
         return $statement->fetchAll();
     }
@@ -36,6 +37,7 @@ class model_database {
             $parameters = array($parameters);
         
         $statement = $this->database->prepare($sql);
+        $statement->setFetchMode(PDO::FETCH_ASSOC);
         $statement->execute($parameters);
         return $statement->fetchAll();
     }

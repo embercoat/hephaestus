@@ -35,7 +35,7 @@ class controller_admin_page extends controller_admin_common {
         }
         $renderer = model::factory('renderer', 'page');
         model::factory('renderer')->add_css('/css/form.css');
-        return model::factory('renderer')->admin_content = $renderer->render('template/admin/page/edit.php', true);
+        return model::factory('renderer')->admin_content = $renderer->render('template/admin/page/edit.php');
     }
     function edit($id){
         if(isset($_POST) && !empty($_POST)){
@@ -49,7 +49,8 @@ class controller_admin_page extends controller_admin_common {
         $renderer->render_links = false;
 
         model::factory('renderer')->add_css('/css/form.css');
-        return model::factory('renderer')->admin_content = $renderer->render('template/admin/page/edit.php', true);
+        $page = $renderer->render('template/admin/page/edit.php', true);
+        return model::factory('renderer')->admin_content = $page;
     }
     function delete($id){
         model::factory('page')->delete($id);
