@@ -187,6 +187,11 @@ class model_renderer {
             return 'no page with that id';
 
     }
+	function href($link, $title = false){
+		if(!$title)
+			$title = $link;
+		return '<a href="'.$this->url($link).'">'.$title.'</a>';
+	}
     function title($id){
 	$sql = "select title from page where idpage = '".$id."'";
         list($data) = model::factory('database')->query($sql);
