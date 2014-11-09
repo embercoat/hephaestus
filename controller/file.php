@@ -15,8 +15,6 @@ class controller_file extends controller_common{
         }
         header('Pragma: public');
         header('Content-Length: ' . filesize(UPLOAD.$data['path']));
-        ob_clean();
-        flush();
         readfile(UPLOAD.$data['path']);
         die();
 	}
