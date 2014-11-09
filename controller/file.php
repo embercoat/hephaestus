@@ -1,5 +1,9 @@
 <?php
 class controller_file extends controller_common{
+	function before(){
+		model::debug()->inhibit = true;
+	}
+	
 	function get($file){
 	    if(is_numeric($file)){
         	$sql = "select path, filename, type from file where idfile = '".$file."'";
