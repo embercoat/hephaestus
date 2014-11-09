@@ -23,6 +23,11 @@
 </ul>
 <hr />
 <ul>
+    <li><a href=":::url:/admin/movie/:::">Lista Filmer</a></li>
+    <li><a href=":::url:/admin/movie/new_movie:::">Ny Film</a></li>
+</ul>
+<hr />
+<ul>
     <li><a href=":::url:/login/logout/:::">Logga Ut</a></li>
 </ul>
 <hr />

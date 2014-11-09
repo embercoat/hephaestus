@@ -1,6 +1,6 @@
 <?php
 
-class controller_kmom2 {
+class controller_kmom2 extends controller_common {
     function before(){
         # Persistency
         $session = model::factory('session');

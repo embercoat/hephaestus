@@ -39,6 +39,13 @@ class model_database {
         $statement = $this->database->prepare($sql);
         $statement->setFetchMode(PDO::FETCH_ASSOC);
         $statement->execute($parameters);
+        if($statement->errorCode() != '00000'){
+            model::debug()->print_backtrace();
+            model::factory('log')->warning('PDO errorcode: '.$statement->errorCode());
+            model::factory('log')->warning('PDO errorinfo: '.json_encode($statement->errorInfo()));
+            model::factory('log')->warning('PDO sql: '. $sql);
+            model::factory('log')->warning('PDO parameters: '. json_encode($parameters));
+        }
         return $statement->fetchAll();
     }
     function get_connection(){

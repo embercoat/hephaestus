@@ -25,7 +25,8 @@ function __autoload($class){
         include_once($path);
     }
 }
-
+$log = model::factory('log');
+$log->set_loglevel($log::INFORMATION);
 // The magic bit
 function resolv($url){
 	// get_parts splits the url by '/' and returns an array with the parts or a single element array with ''

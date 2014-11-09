@@ -28,6 +28,13 @@ class model{
         // Return it
         return self::$instances[$model][$instance];
     }
+    static function __callStatic($name, $args){
+        if(isset($args[0])){
+            return self::factory($name, $args[0]);
+        } else {
+            return self::factory($name);
+        }
+    }
     /*
      * list instances
      * Debugging-tool. Dumps all known instances

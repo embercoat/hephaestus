@@ -20,8 +20,14 @@ class model_debug {
         if(!$backtrace){
             $backtrace = debug_backtrace();
         }
+       
         foreach($backtrace as $b){
-            var_dump($b);
+            var_dump(isset($b['file']), isset($b['line']));
+            if(isset($b['file']) && isset($b['line'])){
+                var_dump('trace');
+                model::log()->information('TRACE: '.$b['file'].':'.$b['line']);
+            }
+            var_dump(array_keys($b));
             
         }
     }

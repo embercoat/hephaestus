@@ -332,7 +332,7 @@ $content = $source->View();
 }
 
 .src-container {
-  min-width: 40em;
+  width: 50em;
 }
 
 .src-header {

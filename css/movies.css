@@ -1,0 +1,13 @@
+#form {
+    width: 100%;
+    float: left;
+}
+#list {
+    width: 100%;
+    float: left;
+    
+}
+#list td {
+        vertical-align: top;
+
+}

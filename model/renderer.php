@@ -14,7 +14,6 @@ class model_renderer {
     private $js = array();
     public $render_links = true;
 	private $textareas = array();
-	private $debug = true;
 
 	/**
 	 * Overloading the regular __set allows for $classinstance->item = 'value'; even if item does not already exist
@@ -95,6 +94,7 @@ class model_renderer {
 		model::factory('log')->information("Restoring textarea: ".$content[1]);
 		return $this->textareas[$content[1]];
 	}
+	
     function render_css(){
 		model::factory('log')->information("Rendering CSS");
         $imports = array();
@@ -152,19 +152,23 @@ class model_renderer {
 			return $url;
 		}
     }
-    function file($id){
-		model::factory('log')->information("Replacing file: ".$id);
-
-        if(is_numeric($id)){
-            $sql = "select path, filename, type from file where idfile = '".$id."'";
-        } else {
-            $sql = "select path, filename, type from file where filename = '".$id."'";
-        }
-        list($data) = model::factory('database')->query($sql);
-        if(!empty($data))
-            return $this->url('/file/get/'.$id);
-        else
-            return 'no image with that id';
+    function file($id = false){
+		if($id !== false){
+			model::factory('log')->information("Replacing file: ".$id);
+	
+			if(is_numeric($id)){
+				$sql = "select path, filename, type from file where idfile = '".$id."'";
+			} else {
+				$sql = "select path, filename, type from file where filename = '".$id."'";
+			}
+			$data = model::factory('database')->query($sql);
+			if(!empty($data))
+				return $this->url('/file/get/'.$id);
+			else
+				return 'no image with that id';
+		} else {
+			return 'no image with that id';
+		}
 
     }
     function post($id){
