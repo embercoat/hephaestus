@@ -2,17 +2,17 @@
 
 class model_debug {
     // Allow for inhibition. Required by file-model to allow transmission of files
-    public $inhibit = true;
+    public static $inhibit = true;
     
     static function shutdown(){
-        if(!$this->inhibit){
+        if(!self::$inhibit){
             var_dump(func_get_args());
             var_dump(__LINE__, __FILE__);
             var_dump(debug_backtrace());
         }
     }
     static function errorhandler(){
-        if(!$this->inhibit){
+        if(!self::$inhibit){
             var_dump(func_get_args());
             var_dump(__LINE__, __FILE__);
             var_dump(debug_backtrace());

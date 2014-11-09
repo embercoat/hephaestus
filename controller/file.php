@@ -1,7 +1,8 @@
 <?php
 class controller_file extends controller_common{
 	function before(){
-		model::debug()->inhibit = true;
+		$debug = model::debug();
+		$debug::$inhibit = true;
 	}
 	
 	function get($file){
